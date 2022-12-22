@@ -1,24 +1,14 @@
-/* eslint no-underscore-dangle: 0 */
 import Car from './10-car';
 
-export default class EVCar extends Car {
-  constructor(brand, motor, color, range) {
-    // call constructor of super class (Building)
+class EVCar extends Car {
+  constructor(brand = '', motor = '', color = '', range = '') {
     super(brand, motor, color);
-
-    // Create objs
     this._range = range;
   }
 
-  // Methods
-
-  cloneCar() {
-    const NewObj = this.constructor[Symbol.species] || this.constructor;
-    const clone = new NewObj();
-    return clone;
+  static get [Symbol.species]() {
+    return Car;
   }
-
-  // Setters
-
-  // Getters
 }
+
+export default EVCar;
