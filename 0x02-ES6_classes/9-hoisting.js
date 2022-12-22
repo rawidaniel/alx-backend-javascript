@@ -33,8 +33,7 @@ class StudentHolberton {
   }
 
   get fullStudentDescription() {
-    const self = this;
-    return `${self._firstName} ${self._lastName} - ${self._holbertonClass.year} - ${self._holbertonClass.location}`;
+    return `${this._firstName} ${this._lastName} - ${this._holbertonClass.year} - ${this._holbertonClass.location}`;
   }
 }
 const student1 = new StudentHolberton('Guillaume', 'Salva', class2020);
