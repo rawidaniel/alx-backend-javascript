@@ -7,8 +7,8 @@ export default function cleanSet(set, startString) {
   ) {
     return '';
   }
-  for (const ele of set.values()) {
-    if (ele.startsWith(startString)) {
+  for (const ele of set) {
+    if (ele && ele.startsWith(startString)) {
       array.push(ele.slice(startString.length));
     }
   }
