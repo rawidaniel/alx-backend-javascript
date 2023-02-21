@@ -40,7 +40,7 @@ const countStudents = function (filePath) {
 
     console.log(`Number of students: ${totalNumber}`);
     for (const [key, value] of Object.entries(firstName)) {
-      const listName = value.split(' ').filter((ele) => Boolean(ele) === true);
+      const listName = value.split(' ').slice(0, -1);
       console.log(
         `Number of students in ${key}: ${
           listName.length
