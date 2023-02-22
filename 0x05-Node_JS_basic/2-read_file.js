@@ -1,55 +1,40 @@
 const fs = require('fs');
-const countStudents = function (filePath) {
-  try {
-    const data = fs.readFileSync(filePath, 'utf-8');
-    const eachData = data
-      .split('\n')
-      .slice(1)
-      .filter((ele) => Boolean(ele) === true)
-      .map((ele) => ele.replace('\r', ''));
-    let [header] = data
-      .split('\n')
-      .slice(0, 1)
-      .filter((ele) => Boolean(ele) === true)
-      .map((ele) => ele.replace('\r', ''));
-    header = header.split(',');
-    const indxField = header.indexOf('field');
-    const indxFirstName = header.indexOf('firstname');
-    const filed = {};
-    const firstName = {};
-    eachData.forEach((ele) => {
-      const data = ele.split(',');
-      if (!filed[data[indxField]]) {
-        filed[data[indxField]] = 1;
-      } else {
-        filed[data[indxField]] += 1;
-      }
-    });
-    Object.keys(filed).forEach((fd) => {
-      eachData.forEach((ele) => {
-        firstName[fd] ||= '';
-        firstName[fd] += ele.endsWith(fd)
-          ? ele.split(',')[indxFirstName] + ' '
-          : '';
-      });
-    });
-    const totalNumber = Object.values(filed).reduce(
-      (acc, num) => (acc += num),
-      0
-    );
 
-    console.log(`Number of students: ${totalNumber}`);
-    for (const [key, value] of Object.entries(firstName)) {
-      const listName = value.split(' ').slice(0, -1);
-      console.log(
-        `Number of students in ${key}: ${
-          listName.length
-        }. List: ${listName.join(' ')}`
-      );
+module.exports = function countStudents (path) {
+  try {
+    // read data
+    const data = fs.readFileSync(path, { encoding: 'utf-8' });
+    // split data and taking only list without header
+    const lines = data.split('\n').slice(1, -1);
+    // give the header of data
+    const header = data.split('\n').slice(0, 1)[0].split(',');
+    // find firstname and field index
+    const idxFn = header.findIndex((ele) => ele === 'firstname');
+    const idxFd = header.findIndex((ele) => ele === 'field');
+    // declarate two dictionaries for count each fields and store list of students
+    const fields = {};
+    const students = {};
+
+    lines.forEach((line) => {
+      const list = line.split(',');
+      if (!fields[list[idxFd]]) fields[list[idxFd]] = 0;
+      fields[list[idxFd]] += 1;
+      if (!students[list[idxFd]]) students[list[idxFd]] = '';
+      students[list[idxFd]] += students[list[idxFd]]
+        ? `, ${list[idxFn]}`
+        : list[idxFn];
+    });
+
+    console.log(`Number of students: ${lines.length}`);
+    for (const key in fields) {
+      if (Object.hasOwnProperty.call(fields, key)) {
+        const element = fields[key];
+        console.log(
+          `Number of students in ${key}: ${element}. List: ${students[key]}`
+        );
+      }
     }
-  } catch (err) {
+  } catch (error) {
     throw new Error('Cannot load the database');
   }
 };
-
-module.exports = countStudents;
