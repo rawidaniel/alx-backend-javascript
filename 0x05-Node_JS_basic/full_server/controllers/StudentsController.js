@@ -11,10 +11,10 @@ module.exports = class StudentsController {
             printData += `\nNumber of students in ${field}: ${element.number}. ${element.students}`;
           }
         }
-        response.status(200).send(printData);
+        response.send(printData);
       })
       .catch((err) => {
-        response.status(500).send(err.message);
+        response.send(err.message);
       });
   }
 
@@ -25,11 +25,11 @@ module.exports = class StudentsController {
     readDatabase(process.argv[2])
       .then((data) => {
         const printData = data[request.params.major].students;
-        if (printData) response.status(200).send(printData);
+        if (printData) response.send(printData);
         response.status(500).send('Major parameter must be CS or SWE');
       })
       .catch((err) => {
-        response.status(500).send(err.message);
+        response.send(err.message);
       });
   }
 };
