@@ -30,7 +30,7 @@ module.exports = function countStudents(path) {
         if (Object.hasOwnProperty.call(fields, key)) {
           const element = fields[key];
           console.log(
-            `Number of students in ${key}: ${element}. List: ${students[key]}`
+            `Number of students in ${key}: ${element}. List: ${students[key]}`,
           );
         }
       }
