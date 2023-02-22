@@ -14,7 +14,7 @@ module.exports = class StudentsController {
         response.send(printData);
       })
       .catch((err) => {
-        response.send(err.message);
+        response.status(500).send(err.message);
       });
   }
 
@@ -29,7 +29,7 @@ module.exports = class StudentsController {
         response.status(500).send('Major parameter must be CS or SWE');
       })
       .catch((err) => {
-        response.send(err.message);
+        response.status(500).send(err.message);
       });
   }
 };
