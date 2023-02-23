@@ -45,18 +45,18 @@ describe('Test acalculateNumber function', function () {
   });
   describe('test type of DIVIDE', function () {
     it('calculateNumber should retrun rounded positive divide result', function () {
-      expect(calculateNumber('DIVIDE', 3, 4)).to.equal(0.75);
-      expect(calculateNumber('DIVIDE', 6.1, 6.1)).to.equal(1);
-      expect(calculateNumber('DIVIDE', 5.7, 1.1)).to.equal(6);
-      expect(calculateNumber('DIVIDE', 0.1, 0.1)).to.equal('Error');
-      expect(calculateNumber('DIVIDE', 0.1, 0.8)).to.equal(0);
+      expect(calculateNumber('DIVIDE', 3, 4), 0.75);
+      expect(calculateNumber('DIVIDE', 6.1, 6.1), 1);
+      expect(calculateNumber('DIVIDE', 5.7, 1.1), 6);
+      expect(calculateNumber('DIVIDE', 0.1, 0.1), 'Error');
+      expect(calculateNumber('DIVIDE', 0.1, 0.8), 0);
     });
     it('calculateNumber should retrun rounded negative divide result', function () {
-      expect(calculateNumber('DIVIDE', -1, 4)).to.equal(-0.25);
-      expect(calculateNumber('DIVIDE', -4.2, 4.1)).to.equal(-1);
-      expect(calculateNumber('DIVIDE', -4.3, 1.6)).to.equal(-2);
-      expect(calculateNumber('DIVIDE', -0.1, -0.1)).to.equal('Error');
-      expect(calculateNumber('DIVIDE', -0.1, -0.8)).to.equal(0);
+      expect(calculateNumber('DIVIDE', -1, 4), -0.25);
+      expect(calculateNumber('DIVIDE', -4.2, 4.1), -1);
+      expect(calculateNumber('DIVIDE', -4.3, 1.6), -2);
+      expect(calculateNumber('DIVIDE', -0.1, -0.1), 'Error');
+      expect(calculateNumber('DIVIDE', -0.1, -0.8), 0);
     });
     it('calculateNumber should retrun typeof number', function () {
       expect(calculateNumber('DIVIDE', 3, 4)).to.be.a('number');
