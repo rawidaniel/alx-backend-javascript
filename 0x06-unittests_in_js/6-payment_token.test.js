@@ -6,7 +6,7 @@ describe('getPaymentTokenFromAPI', function () {
     getPaymentTokenFromAPI(true)
       .then((res) => {
         console.log(res);
-        expect(res).to.be.equal({ data: 'Successful response from the API' });
+        expect(res).to.be.eql({ data: 'Successful response from the API' });
         done();
       })
       .catch((err) => {
