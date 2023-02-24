@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const { describe } = require('mocha');
-const calculateNumber = require('./1-calcul');
+const calculateNumber = require('./2-calcul_chai');
 
 describe('Test acalculateNumber function', function () {
   describe('test type of SUM', function () {
