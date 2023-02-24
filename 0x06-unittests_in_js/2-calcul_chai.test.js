@@ -64,5 +64,10 @@ describe('Test acalculateNumber function', function () {
     it('calculateNumber should retrun typeof string when denominator is 0', function () {
       expect(calculateNumber('DIVIDE', 3, 0)).to.be.a('string');
     });
+    it('returns Error', () => {
+      expect(calculateNumber('DIVIDE', 2, 0), 'Error');
+      expect(calculateNumber('DIVIDE', 3, 0), 'Error');
+      expect(calculateNumber('DIVIDE', 4, 0), 'Error');
+    });
   });
 });
