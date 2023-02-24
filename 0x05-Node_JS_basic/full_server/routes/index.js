@@ -12,7 +12,7 @@ router.get('/students', (request, response) => {
   StudentsController.getAllStudents(request, response);
 });
 
-router.get('/students:majo', (request, response) => {
+router.get('/students:major', (request, response) => {
   StudentsController.getAllStudentsByMajor(request, response);
 });
 module.exports = router;
